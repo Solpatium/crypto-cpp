@@ -20,6 +20,9 @@ include(CTest)
 enable_testing()
 include_directories("${CMAKE_SOURCE_DIR}/src")
 
+find_package(Boost 1.66.0)
+include_directories(${Boost_INCLUDE_DIRS})
+
 if (NOT DEFINED CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Debug)
 endif()

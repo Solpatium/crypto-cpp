@@ -7,11 +7,16 @@
 #include <string>
 #include <utility>
 #include <vector>
-
+#include <stdint.h>
+#include <boost/multiprecision/cpp_int.hpp>
 #include "third_party/gsl/gsl-lite.hpp"
 
 #include "starkware/utils/error_handling.h"
 #include "starkware/utils/prng.h"
+
+#ifndef __SIZEOF_INT128__
+  typedef boost::multiprecision::uint128_t __uint128_t;
+#endif
 
 namespace starkware {
 
