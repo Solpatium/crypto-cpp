@@ -15,13 +15,25 @@ constexpr uint64_t inline Pow2(uint64_t n) {
   return UINT64_C(1) << n;
 }
 
+// TODO: rewrite with SFINAE
+constexpr size_t inline LeadingZeros(const uint64_t n) {
+  size_t i = 0;
+  for (uint64_t mask = uint64_t(1) << 63; mask != 0; mask >>= 1, i++) {
+    if (n & mask) {
+      return i;
+    }
+  }
+
+  return i;
+}
+
 /*
   Returns floor(Log_2(n)), n must be > 0.
 */
 constexpr size_t inline Log2Floor(const uint64_t n) {
   ASSERT(n != 0, "log2 of 0 is undefined");
   static_assert(sizeof(long long) == 8, "It is assumed that long long is 64bits");  // NOLINT
-  return 63 - __builtin_clzll(n);
+  return 63 - LeadingZeros(n);
 }
 
 /*

@@ -144,6 +144,15 @@ std::string BigInt<N>::ToString() const {
 }
 
 template <size_t N>
+std::string BigInt<N>::ToStringDec() const {
+  std::ostringstream res;
+  for (int i = N - 1; i >= 0; --i) {
+    res << std::dec << (*this)[i];
+  }
+  return res.str();
+}
+
+template <size_t N>
 std::vector<bool> BigInt<N>::ToBoolVector() const {
   std::vector<bool> res;
   for (uint64_t value : value_) {
@@ -213,7 +222,7 @@ constexpr size_t BigInt<N>::NumLeadingZeros() const {
   }
 
   if (i >= 0) {
-    res += __builtin_clzll(gsl::at(value_, i));
+    res += LeadingZeros(gsl::at(value_, i));
   }
 
   return res;

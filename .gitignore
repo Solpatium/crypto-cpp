@@ -3,3 +3,5 @@
 node_modules
 *.so
 package-lock.json
+cmake-build-debug
+.idea

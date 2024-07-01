@@ -21,7 +21,7 @@ class Prng {
     Returns a random integer in the range [0, 2^64).
     Note: This random number generator is NOT cryptographically secure.
   */
-  uint64_t RandomUint64() { return RandomUint64(0, std::numeric_limits<uint64_t>::max()); }
+  uint64_t RandomUint64() { return RandomUint64(0, (std::numeric_limits<uint64_t>::max)()); }
 
  private:
   std::mt19937 mt_prng_;
